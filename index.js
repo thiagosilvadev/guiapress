@@ -1,8 +1,21 @@
 const express = require("express");
-
 const app = express();
-
 require("dotenv").config();
+
+const connection = require("./database/database");
+
+const CategoriesController = require("./categories/CategoriesController");
+const ArticlesController = require("./articles/ArticlesController");
+const Category = require("./categories/Category");
+const Article = require("./articles/Article");
+
+connection
+  .authenticate()
+  .then(() => {
+    console.log("Sucesso ✔");
+  })
+  .catch((error) => console.log(error));
+
 //view engine
 app.set("view engine", "ejs");
 
@@ -16,10 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // //rotas
-// app.use(routes);
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", CategoriesController);
+app.use("/", ArticlesController);
 
 app.listen(process.env.PORT, () => console.log("👀✔"));
