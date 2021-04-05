@@ -29,6 +29,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // //rotas
+app.get("/", (req, res) => {
+  res.send("ok");
+});
 app.use("/", CategoriesController);
 app.use("/", ArticlesController);
 
