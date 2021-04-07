@@ -26,7 +26,9 @@
           <th><%= title %></th>
           <th><%= slug %></th>
           <th>
-            <a href="#" class="btn btn-warning">Editar</a>
+            <a href="/admin/categories/edit/<%= id %>" class="btn btn-warning"
+              >Editar</a
+            >
 
             <form action="/categories/delete" method="POST" class="d-inline">
               <input type="hidden" name="id" value="<%= id %> " />

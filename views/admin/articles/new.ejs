@@ -1,0 +1,61 @@
+<%- include('../../partials/head') %>
+<body>
+  <header><%- include('../../partials/navbar') %></header>
+  <div class="container">
+    <div class="card mt-5">
+      <div class="card-header">
+        <h2>Novo artigo</h2>
+      </div>
+
+      <div class="card-body">
+        <form method="POST" action="/categories/save">
+          <div class="row my-4">
+            <label class="col-7" for=""
+              >Titulo
+              <input
+                type="text"
+                name="title"
+                id=""
+                placeholder="Defina o titulo do artigo"
+                class="form-control"
+                required
+              />
+            </label>
+
+            <label for="category" class="col-4"
+              >Categoria
+              <select name="category" id="category" class="form-control">
+                <% categories.map((category) => { %>
+                <option value="<%= category.id %>">
+                  <%= category.title %>
+                </option>
+
+                <% })%>
+              </select>
+            </label>
+          </div>
+
+          <textarea
+            name="body"
+            class="form-control mb-2"
+            id="article"
+            placeholder="Escreva o artigo"
+          ></textarea>
+
+          <button class="btn btn-primary mt-4" type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include('../../partials/footer') %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    language: "pt_BR",
+    selector: "#article",
+    plugins: [
+      "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emociton",
+    ],
+  });
+</script>
